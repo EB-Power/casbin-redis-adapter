@@ -66,6 +66,9 @@ class Adapter(persist.Adapter):
     def drop_table(self):
         self.client.delete(self.key)
 
+    def clear_policy(self):
+        self.drop_table()
+
     def load_policy(self, model):
         """Implementing add Interface for casbin. Load all policy rules from redis
 
