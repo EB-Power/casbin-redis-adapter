@@ -1,0 +1,41 @@
+[project]
+name = "casbin-redis-adapter"
+version = "1.5.2"
+authors = [
+    {name = "BustDot", email = "Bust.dev@outlook.com"},
+]
+description = "Redis Adapter for PyCasbin"
+readme = "README.md"
+license-files = ["LICENSE"]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "casbin>=1.18.0",
+    "redis>=4.5.2,<8",
+]
+
+[project.urls]
+"Home-page" = "https://github.com/pycasbin/redis-adapter"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.black]
+line-length = 120
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+]
