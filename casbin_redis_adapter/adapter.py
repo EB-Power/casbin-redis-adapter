@@ -50,18 +50,30 @@ class Adapter(persist.Adapter):
         username=None,
         password=None,
         key="casbin_rules",
+        cluster=False,
         **kwargs,
     ):
         self.key = key
-        self.client = redis.Redis(
-            host=host,
-            port=port,
-            db=db,
-            username=username,
-            password=password,
-            decode_responses=True,
-            **kwargs,
-        )
+
+        if cluster:
+            self.client = redis.RedisCluster(
+                host=host,
+                port=port,
+                username=username,
+                password=password,
+                decode_responses=True,
+                **kwargs,
+            )
+        else:
+            self.client = redis.Redis(
+                host=host,
+                port=port,
+                db=db,
+                username=username,
+                password=password,
+                decode_responses=True,
+                **kwargs,
+            )
 
     def drop_table(self):
         self.client.delete(self.key)
