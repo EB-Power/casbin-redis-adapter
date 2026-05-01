@@ -1,6 +1,6 @@
 [project]
 name = "casbin-redis-adapter"
-version = "1.6.0"
+version = "1.6.1"
 authors = [
     {name = "BustDot", email = "Bust.dev@outlook.com"},
 ]
