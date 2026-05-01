@@ -8,16 +8,15 @@ class CasbinRule:
     CasbinRule model
     """
 
-    def __init__(
-        self, ptype=None, v0=None, v1=None, v2=None, v3=None, v4=None, v5=None
-    ):
+    def __init__(self, ptype=None, *args, **kwargs):
+        if args and kwargs:
+            raise ValueError("Do not specify args and kwargs at the same time.")
         self.ptype = ptype
-        self.v0 = v0
-        self.v1 = v1
-        self.v2 = v2
-        self.v3 = v3
-        self.v4 = v4
-        self.v5 = v5
+        for k, v in kwargs.items():
+            if k.startswith("v"):
+                setattr(self, k, v)
+        for i, v in enumerate(args):
+            setattr(self, f"v{i}", v)
 
     def dict(self):
         d = {"ptype": self.ptype}
